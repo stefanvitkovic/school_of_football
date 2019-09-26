@@ -28,7 +28,7 @@ class CreateAbilitiesTable extends Migration
             $table->integer('heading')->nullable()->unsigned()->default(NULL);
             $table->longText('comment')->nullable()->default(NULL);
             $table->integer('category')->nullable()->unsigned()->default(NULL);
-            $table->integer('shirt_number')->unsigned();
+            $table->integer('shirt_number')->nullable()->unsigned()->default(NULL);
             $table->foreign('category')->references('id')->on('categories')->onDelete('set null');
             $table->engine = 'InnoDB';
         });
