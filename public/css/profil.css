@@ -1,0 +1,132 @@
+body, html {
+    height: auto;
+    /*padding-bottom: 50px;*/
+    
+    background-repeat: no-repeat;
+    /*background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    background-image: linear-gradient(#162223, #06260f);
+
+/*background: #8E0E00;  
+background: -webkit-linear-gradient(to left, #8E0E00 , rgba(31, 28, 24, 0.76)); 
+background: linear-gradient(to left, #8E0E00 , rgba(31, 28, 24, 0.76));*/
+
+
+/*
+background: #000000; 
+background: -webkit-linear-gradient(to left, #000000 , #e74c3c);
+background: linear-gradient( #000000 , #e74c3c); */
+       
+}
+/**
+ * Profile image component
+ */
+.profile-header-container{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.profile-header-img {
+    padding: 54px;
+}
+
+.profile-header-img > img.img-circle {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #51D2B7;
+}
+/*skills*/
+.profile-header-container2{
+    margin: 0 auto;
+    text-align: left;	
+}
+.profile-header-img{
+	display: inline-block;
+	padding: 10px;
+}
+.profile-header-img > a > img.img-skills {
+    width: 90px;
+    height: 100px;
+    border: 2px solid #51D2B7;
+    border-radius: 10%;
+    text-align: left;
+    padding:5px;
+}
+
+.skills_info {
+    margin-top: 7px;
+    /* z-index: 1000; */
+    text-align: left;
+}
+
+.label.label-default.rank-label2 {
+    background-color: rgba(0,0,0,.5);
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.rank-label-container2 {
+    margin-top: 5px;
+}
+/*end skills*/
+.profile-header {
+    margin-top: 43px;
+}
+
+/**
+ * Ranking component
+ */
+.rank-label-container {
+    margin-top: -19px;
+    /* z-index: 1000; */
+    text-align: center;
+}
+
+.label.label-default.rank-label {
+    background-color: rgb(81, 210, 183);
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.table>tbody>tr>td{
+  vertical-align: middle !important;
+  line-height: 1.42857143
+}
+
+.table{
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: white;
+}
+
+.white {
+	color:rgba(255, 255, 255, 0.89);;
+	/*color:rgb(81, 210, 183);*/
+}
+
+.whitesh{
+	color:rgba(255, 255, 255, 0.53);
+}
+
+.bar-success {  background-color: #5cb85c;}
+.bar-info {    background-color: #5bc0de;}
+.bar-warning {    background-color: #f0ad4e;}
+.bar-danger {  background-color: #d9534f;}
+
+.table>tbody>tr:hover{
+  background-color: #9eb19b5e;
+  color: white;
+}
+.btn-green{
+  background-color: #3f7d3f !important;
+    color: white;
+}
+.btn-green:hover{
+  background-color: #9eb19b5e !important;
+    color: white;
+}
