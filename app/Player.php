@@ -15,19 +15,13 @@ class Player extends Model
         return $this->hasOne('App\Ability','user_id');
     }
 
-    public function positions()
+    public function position()
     {
-        return $this->hasMany('App\PlayerPosition')->select('*');
+        return $this->belongsToMany('App\Position','player_positions');
     }
 
-    public function full_positions()
-    {
-        return $this->hasMany('App\PlayerPosition')->join('positions','player_positions.position_id','=','positions.id');
-    }
-
-    public function full_info()
-    {
-        return $this->hasOne('App\Ability','user_id')->join('categories','abilities.category','=','categories.id');
+    public function category(){
+        return $this->belongsToMany('App\Category','abilities','id','category');
     }
 
 }

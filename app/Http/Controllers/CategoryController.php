@@ -57,10 +57,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
-    {
-        $category_id = $category->id;
-        
-        $players = DB::table('players')->join('abilities','players.id','=','abilities.user_id')->select('players.*')->where('abilities.category',$category_id)->get();
+    {        
+        $players =  $category->players()->with('ability')->get();
 
         return view('category_show',compact('players'));
     }

@@ -109,9 +109,7 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        $positions = $player->positions()->join('positions','player_positions.position_id','=','positions.id')->get();
-        $abilities = $player->ability()->join('categories','abilities.category','=','categories.id')->first();
-        return view('player',['full_info'=>$player,'positions'=>$positions,'abilities'=>$abilities]);
+        return view('player',compact('player'));
     }
 
     /**
@@ -122,11 +120,9 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        $positions = $player->positions()->join('positions','player_positions.position_id','=','positions.id')->get();
-        $abilities = $player->ability()->join('categories','abilities.category','=','categories.id')->first();
         $category = Category::all();
         $all_positions = Position::all();
-        return view('edit',['player_category'=>$abilities,'id'=>$player->id,'player'=>$player,'positions'=>$positions,'categories'=>$category,'all_positions'=>$all_positions]);
+        return view('edit',['id'=>$player->id,'player'=>$player,'categories'=>$category,'all_positions'=>$all_positions]);
     }
 
     /**
@@ -139,9 +135,7 @@ class PlayerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            "*" => 'required',
-            'shirt_number' => 'unique:abilities,shirt_number,NULL,NULL,category,'.$request->age_group,
-            'category' => 'unique:abilities,category,NULL,NULL,shirt_number,'.$request->shirt_number,
+            "*" => 'required'
         ]);
 
         $player = Player::findOrFail($id);
@@ -159,7 +153,6 @@ class PlayerController extends Controller
         $stats->heading = $request->heading;
         $stats->comment = $request->comment;
         $stats->category = $request->age_group;
-        $stats->shirt_number = $request->shirt_number;
         $stats->save();
 
         $data = Input::get('cb');

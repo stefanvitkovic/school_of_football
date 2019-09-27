@@ -42,9 +42,8 @@ class CoachController extends Controller
 
     public function admin()
     {
-        $players = Player::with('ability')->get();
-        $categories = Category::all();
-        return view('admin',['players'=>$players,'categories'=>$categories]);
+        $players = Player::with('ability','category')->get();
+        return view('admin',compact('players'));
     }
 
     /**
@@ -57,7 +56,7 @@ class CoachController extends Controller
         $coaches = User::all();
         $categories = Category::all();
         $sponsors = Sponsor::all();
-        $positions = DB::table('positions')->select('*')->get();
+        $positions = Position::all();
         return view('adminc',['coaches'=>$coaches,'categories'=>$categories,'sponsors'=>$sponsors,'positions'=>$positions]);
     }
 
@@ -94,25 +93,21 @@ class CoachController extends Controller
             $location = public_path("imagesc\\".$filename);
             Image::make($image)->resize(200,200)->save($location);
 
-            $coach = new User($request->all());
-            $coach->password = \Hash::make($request->input('password'));
-            $coach->image = $request->input('name') . $request->input('date');
-            $coach->height = $request->input('height');
-            $coach->weight = $request->input('weight');
-            $coach->date = $request->input('date');
-            $coach->bio = 'bio';
-            $coach->save();
+            $img = $request->input('name') . $request->input('date');
+           
         }else{
-            $coach = new User($request->all());
-
-            $coach->password = \Hash::make($request->input('password'));
-            $coach->image = 'default';
-            $coach->height = $request->input('height');
-            $coach->weight = $request->input('weight');
-            $coach->date = $request->input('date');
-            $coach->bio = 'bio';
-            $coach->save();
+            
+            $img = 'default';
+            
         }   
+        $coach = new User($request->all());
+        $coach->password = \Hash::make($request->input('password'));
+        $coach->image = $img;
+        $coach->height = $request->input('height');
+        $coach->weight = $request->input('weight');
+        $coach->date = $request->input('date');
+        $coach->bio = 'bio';
+        $coach->save();
         return back()->with('message','Coach added');
     }
 

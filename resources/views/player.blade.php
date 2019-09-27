@@ -19,31 +19,30 @@
 	<div class="row">
         <div class="profile-header-container">   
     		<div class="profile-header-img">
-                <img class="img-circle" src="{{url('images/'.$full_info->image.'.png')}}" />
+                <img class="img-circle" src="{{url('images/'.$player->image.'.png')}}" />
                 <!-- badge -->
                 <div class="rank-label-container">
-                    <span class="label label-default rank-label">{{$full_info->ability->shirt_number ? $full_info->ability->shirt_number : '#'}}</span>
+                    <span class="label label-default rank-label">{{$player->ability->shirt_number ? $player->ability->shirt_number : '#'}}</span>
                 </div>
             </div>
         </div> 
         <div class='row' style="border: 0.2px solid rgb(81, 210, 183); box-shadow: 0 4px 8px 0 rgba(44, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49);width: 100%;margin-right: 0px;margin-left: 0px;  ">
         	<div class='col-md-3 white text-center'>
         	  <h3 class="whitesh">Info</h3><hr>
-        	  	<p><span class='whitesh'>Name:</span> {{$full_info->name}}</p>
-        	  	<p><span class='whitesh'>Last name:</span> {{$full_info->last_name}}</p>
-        	  	<p><span class='whitesh'>Date of Birth:</span> {{$full_info->date}}</p>
-        	  	<p><span class='whitesh'>Shirt Number:</span> {{$full_info->ability->shirt_number}}</p>
-        	  	@if($abilities)
-        	  	<p><span class='whitesh'>Age group:</span> {{$abilities->name}}</p>
+        	  	<p><span class='whitesh'>Name:</span> {{$player->name}}</p>
+        	  	<p><span class='whitesh'>Last name:</span> {{$player->last_name}}</p>
+        	  	<p><span class='whitesh'>Date of Birth:</span> {{$player->date}}</p>
+        	  	<p><span class='whitesh'>Shirt Number:</span> {{$player->ability->shirt_number}}</p>
+        	  	@if($player->category)
+        	  	<p><span class='whitesh'>Age group:</span> {{$player->category[0]->name}}</p>
         	  	@endif
-        	  	<p><span class='whitesh'>Height:</span> {{$full_info->height}} cm</p>
-        	  	<p><span class='whitesh'>Weight:</span> {{$full_info->weight}} kg</p>
+        	  	<p><span class='whitesh'>Height:</span> {{$player->height}} cm</p>
+        	  	<p><span class='whitesh'>Weight:</span> {{$player->weight}} kg</p>
         	</div>
 
         	<div class='col-md-9'>
-        	<!-- {{print_r($full_info)}} -->
+        	<!-- {{print_r($player)}} -->
         	<br>
-        	<!-- {{print_r($abilities)}} -->
         	
 		        <div class="progress progress-striped" id='prvi'> 
 		            <div class="progress-bar progress-bar-success" style=""></div>
@@ -79,15 +78,15 @@
 
 		        <div class="panel panel-default">
 				  <div class="panel-body">
-				  	{{ $full_info->name }} {{ $full_info->last_name }} <br><br>
-				    {{ $full_info->comment ? $full_info->comment : 'Player' }}
+				  	{{ $player->name }} {{ $player->last_name }} <br><br>
+				    {{ $player->comment ? $player->comment : 'Player' }}
 				  </div>
 				</div>
         	</div>
 		</div>
 		<div class=''>
         	<div class="profile-header-container2">   
-        	@foreach($positions as $position)
+        	@foreach($player->position as $position)
 	    		<div class="profile-header-img">
 	    			<a data-toggle='modal' href="#{{$position->id}}">
 	    				@if(file_exists(public_path('skills/'.$position->id.'.png')))
@@ -114,10 +113,10 @@
 			        <div class='modal-body'>
 			        <div class="profile-header-container" style="margin-top: 0px">   
 			    		<div class="profile-header-img">
-			                <img class="img-circle" src="{{url('images/'.$full_info->image.'.png')}}" />
+			                <img class="img-circle" src="{{url('images/'.$player->image.'.png')}}" />
 			                <!-- badge -->
 			                <div class="rank-label-container">
-			                    <span class="label label-default rank-label">{{$full_info->ability->shirt_number}}</span>
+			                    <span class="label label-default rank-label">{{$player->ability->shirt_number}}</span>
 			                </div>
 			            </div>
 			            <div class="profile-header-img">
@@ -134,7 +133,7 @@
 			        </div> 
 			        <div class="row">
 			        	<div class="col-md-12">
-			        		<em><p>{{$full_info->comment}}</p></em>
+			        		<em><p>{{$player->comment}}</p></em>
 			        	</div>
 			        </div>
 			        <hr>
@@ -170,7 +169,7 @@
 	    window.percent7 = 0;
 	    window.percent8 = 0;
 	    window.progressInterval = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->speed *5}}";
+			vrednost = "{{$player->ability->speed *5}}";
 			id = '#prvi';
 	        if(window.percent1 < vrednost) {
 	            window.percent1++;
@@ -185,7 +184,7 @@
 	    } , 100 );
 		
 		window.progressInterval2 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->power *5}}";
+			vrednost = "{{$player->ability->power *5}}";
 			id = '#drugi';
 	        if(window.percent2 < vrednost) {
 	            window.percent2++;
@@ -200,7 +199,7 @@
 	    } , 100 );
 
 	    window.progressInterval3 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->creativity * 5}}";
+			vrednost = "{{$player->ability->creativity * 5}}";
 			id = '#treci';
 	        if(window.percent3 < vrednost) {
 	            window.percent3++;
@@ -215,7 +214,7 @@
 	    } , 100 );
 
 	    window.progressInterval4 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->dribbling * 5}}";
+			vrednost = "{{$player->ability->dribbling * 5}}";
 			id = '#cetvrti';
 	        if(window.percent4 < vrednost) {
 	            window.percent4++;
@@ -230,7 +229,7 @@
 	    } , 100 );
 
 	    window.progressInterval5 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->passing * 5}}";
+			vrednost = "{{$player->ability->passing * 5}}";
 			id = '#peti';
 	        if(window.percent5 < vrednost) {
 	            window.percent5++;
@@ -245,7 +244,7 @@
 	    } , 100 );
 
 	    window.progressInterval6 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->finishing * 5}}";
+			vrednost = "{{$player->ability->finishing * 5}}";
 			id = '#sesti';
 	        if(window.percent6 < vrednost) {
 	            window.percent6++;
@@ -260,7 +259,7 @@
 	    } , 100 );
 
 	    window.progressInterval7 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->defending * 5}}";
+			vrednost = "{{$player->ability->defending * 5}}";
 			id = '#sedmi';
 	        if(window.percent7 < vrednost) {
 	            window.percent7++;
@@ -275,7 +274,7 @@
 	    } , 100 );
 
 	    window.progressInterval8 = window.setInterval( function(){
-			vrednost = "{{$full_info->ability->heading * 5}}";
+			vrednost = "{{$player->ability->heading * 5}}";
 			id = '#osmi';
 	        if(window.percent8 < vrednost) {
 	            window.percent8++;

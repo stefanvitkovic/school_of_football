@@ -11,6 +11,6 @@ class Category extends Model
     public $timestamps = true;
 
     public function players(){
-    	return $this->hasMany('App\Player');
+    	return $this->belongsToMany('App\Player','abilities','category','id');
     }
 }

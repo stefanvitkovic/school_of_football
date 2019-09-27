@@ -66,13 +66,7 @@
         <td>{{$player->name}}</a></td>
         <td>{{$player->last_name}}</td>
         <td>{{$player->ability->shirt_number}}</td>
-        <?php
-        $category_id = $player->ability->category;
-        $category_name = $categories->first(function($val,$key) use($category_id){
-          return $val->id == $category_id;
-        });
-        ?>
-        <td>{{ $category_name['name'] }}</td>
+        <td>{{$player->category[0]->name}}</td>
         <td class=''><a href="{{url('players',[$player->id])}}"><button class='btn btn-default'>View</button></a> <a href="{{url('players/'.$player->id.'/edit')}}"><button class='btn btn-warning'>Edit</button></a> <button data-button='{{$player->id}}' id="delete-button" class='btn btn-danger' data-toggle="modal" data-target="#{{$player->id}}">Delete</button></td>
       </tr>
 

@@ -18,11 +18,13 @@ class Player extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'last_name' => $this->last_name,
             'date' => $this->date,
-            'full_info' => $this->full_info,
-            'full_positions' => $this->full_positions,
             'height' => $this->height,
             'weight' => $this->weight,
+            'abilities' => $this->ability,
+            'positions' => $this->position,
+            'category' => $this->category[0],
         ];
     }
 }

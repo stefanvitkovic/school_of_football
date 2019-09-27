@@ -10,8 +10,8 @@ class Position extends Model
     public $timestamps = true;
     protected $guarded = [];
 
-    // public function player()
-    // {
-    //     return $this->belongsTo('App\Player');
-    // }
+    public function players()
+    {
+        return $this->belongsToMany('App\Player','player_positions');
+    }
 }

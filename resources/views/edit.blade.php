@@ -46,7 +46,7 @@
 	        	  	<p><span class='whitesh'>Weight:</span> {{$player->weight}} kg</p>
 	        	  	<hr>
 	        	  	<em><h4>Positions:</h4></em>
-	        	  	@foreach($positions as $position)
+	        	  	@foreach($player->position as $position)
 	        	  		{{$position->position_name}}<br>
 	        	  	@endforeach
 	        	  	<br>
@@ -60,15 +60,12 @@
 			   		 <input type="hidden" name="_method" value="PATCH">
 					 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 					 <input type="hidden" name='id' value="{{$player->id}}">
-					 <div class="form-group col-md-4">
-					    <label for="shirt_number">Shirt Number</label>
-					    <input type="number" min='1' class="form-control" id="shirt_number" name='shirt_number' placeholder="{{$player->ability->shirt_number}}" value="{{$player->ability->shirt_number}}">
-					  </div>
-					  <div class="form-group col-md-4">
+					 
+					  <div class="form-group col-md-6">
 					    <label for="height">Height</label>
 					    <input type="number" min='1' class="form-control" id="height" name='height' placeholder="{{$player->height}}" value="{{$player->height}}">
 					  </div>
-					  <div class="form-group col-md-4">
+					  <div class="form-group col-md-6">
 					    <label for="weight">Weight</label>
 					    <input type="number" min='1' class="form-control" id="weight" name='weight' placeholder="{{$player->weight}}" value="{{$player->weight}}">
 					  </div>
@@ -110,8 +107,8 @@
 						  <label for="sel1">Select age group:</label>
 						  <select name='age_group' class="form-control" id="sel1">
 
-						  @if(isset($player_category->name))
-						  	<option value={{$player_category->category}} selected>{{$player_category->name}}</option>
+						  @if(isset($player->category[0]->name))
+						  	<option value={{$player->category[0]->id}} selected>{{$player->category[0]->name}} ({{$player->category[0]->starting_age}} - {{$player->category[0]->ending_age}})</option>
 						  @else
 						  	<option value="" selected disabled>age group</option>	  
 						  @endif
