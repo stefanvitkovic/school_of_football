@@ -20,4 +20,14 @@ class Player extends Model
         return $this->hasMany('App\PlayerPosition')->select('*');
     }
 
+    public function full_positions()
+    {
+        return $this->hasMany('App\PlayerPosition')->join('positions','player_positions.position_id','=','positions.id');
+    }
+
+    public function full_info()
+    {
+        return $this->hasOne('App\Ability','user_id')->join('categories','abilities.category','=','categories.id');
+    }
+
 }
