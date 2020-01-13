@@ -38,7 +38,8 @@ class User extends Authenticatable
     ];
 
     public function test(){
-        $x = 1;
         echo 'test';
     }
+
+    public $x = 'x';
 }
