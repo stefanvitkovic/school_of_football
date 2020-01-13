@@ -43,4 +43,5 @@ class User extends Authenticatable
 
     public $x = 'x';
     public $test = 'test';
+    protected $blic;
 }
