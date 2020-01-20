@@ -26,5 +26,5 @@ Route::get('articles_panel','CoachController@admina')->middleware('auth');
 
 
 Route::get('test',function(){
-    return 'test';
+    return 'proba';
 });
