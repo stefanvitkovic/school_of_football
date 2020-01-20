@@ -25,4 +25,6 @@ Route::get('coaches_panel','CoachController@adminc')->middleware('auth');
 Route::get('articles_panel','CoachController@admina')->middleware('auth');	
 
 
-
+Route::get('test',function(){
+    return 'test';
+});
